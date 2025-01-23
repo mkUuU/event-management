@@ -49,7 +49,7 @@
   
   /* Form styles */
   form {
-    background-color: #fff;
+    background-color:#333;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -102,13 +102,13 @@
   }
   
   th {
-    background-color: #f8fafc;
+    background-color:darkgrey;
     font-weight: bold;
   }
   
   /* Card styles */
   .card {
-    background-color: #cfcece;
+    background-color:#333;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
@@ -118,7 +118,7 @@
   .card:hover{
     transform: scale(1.02);
     
-    background-color: orangered;
+    background-color:#155724;
   }
   
   /* Grid styles */
