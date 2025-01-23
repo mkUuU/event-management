@@ -6,7 +6,7 @@
     <title>Settings - Event Management System</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="light-mode">
     <header>
         <nav class="container">
             <ul>
@@ -14,14 +14,27 @@
                 <li><a href="events.html">Events</a></li>
                 <li><a href="create-event.html">Create Event</a></li>
                 <li><a href="analytics.html">Analytics</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="settings.html" class="active">Settings</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="login.html">Logout</a></li>
             </ul>
+            <div class="theme-toggle">
+                <label>
+                    <input type="checkbox" id="themeToggle">
+                    Dark Mode
+                </label>
+            </div>
         </nav>
     </header>
-    <main class="container">
+    
+    <main class="container settings-page">
         <h1>Settings</h1>
+        <div class="theme-toggle">
+            <label>
+                <input type="checkbox" id="themeToggle">
+                Toggle Dark Mode
+            </label>
+        </div>
         <div class="card">
             <h2>Account Settings</h2>
             <form id="accountSettingsForm">
@@ -38,30 +51,35 @@
         </div>
         <div class="card">
             <h2>Notification Settings</h2>
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" id="emailNotifications" name="emailNotifications">
-                    Email Notifications
-                </label>
-            </div>
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" id="pushNotifications" name="pushNotifications">
-                    Push Notifications
-                </label>
-            </div>
+            <form id="notificationSettingsForm">
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="emailNotifications" name="emailNotifications">
+                        Email Notifications
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="pushNotifications" name="pushNotifications">
+                        Push Notifications
+                    </label>
+                </div>
+                <button type="submit">Save Notifications</button>
+            </form>
         </div>
         <div class="card">
             <h2>Privacy Settings</h2>
-            <div class="form-group">
-                <label>
-                    <input type="checkbox" id="privateProfile" name="privateProfile">
-                    Make profile private
-                </label>
-            </div>
+            <form id="privacySettingsForm">
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="privateProfile" name="privateProfile">
+                        Make Profile Private
+                    </label>
+                </div>
+                <button type="submit">Save Privacy Settings</button>
+            </form>
         </div>
     </main>
     <script src="settings.js"></script>
 </body>
 </html>
-

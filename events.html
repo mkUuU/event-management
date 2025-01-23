@@ -14,12 +14,19 @@
                 <li><a href="events.html">Events</a></li>
                 <li><a href="create-event.html">Create Event</a></li>
                 <li><a href="analytics.html">Analytics</a></li>
-                <li><a href="settings.html">Settings</a></li>
+                <li><a href="settings.html" class="active">Settings</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="login.html">Logout</a></li>
             </ul>
+            <div class="theme-toggle">
+                <label>
+                    <input type="checkbox" id="themeToggle">
+                    Dark Mode
+                </label>
+            </div>
         </nav>
     </header>
+    
     <main class="container">
         <h1>Events</h1>
         <div class="form-group">
@@ -28,6 +35,23 @@
         <div id="eventsList" class="grid">
             <!-- Event cards will be dynamically inserted here -->
         </div>
+        <!-- Popup for editing -->
+<div id="editPopup" class="popup hidden">
+    <div class="popup-content">
+        <h2>Edit Event</h2>
+        <form id="editForm">
+            <input type="text" id="editName" placeholder="Event Name" required>
+            <input type="date" id="editDate" required>
+            <textarea id="editDescription" placeholder="Description" required></textarea>
+            <select id="editStatus">
+                <option value="Upcoming">Upcoming</option>
+                <option value="Completed">Completed</option>
+            </select>
+            <button type="submit">Save Changes</button>
+            <button type="button" id="cancelEdit">Cancel</button>
+        </form>
+    </div>
+</div>
     </main>
     <script src="events.js"></script>
 </body>
