@@ -1,6 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const router = express.Router();
+
+const dbConfig = {
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'db'
+};
+const SECRET_KEY = ''
 
 const app = express();
 app.use(cors());
@@ -76,6 +87,48 @@ app.delete('/api/events/:id', (req, res) => {
 
     events = events.filter(e => e.id !== event.id);
     res.json({ message: "Event deleted successfully" });
+});
+
+// Login Route
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const user = await db.query('SELECT * FROM users WHERE username = $1', [username]);
+        if (user.rows.length === 0) return res.status(401).json({ message: 'Invalid username or password' });
+
+        const validPassword = await bcrypt.compare(password, user.rows[0].password);
+        if (!validPassword) return res.status(401).json({ message: 'Invalid username or password' });
+
+        const token = jwt.sign({ id: user.rows[0].id }, SECRET_KEY, { expiresIn: '1h' });
+        res.json({ message: 'Login successful', token });
+    } catch (err) {
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
+});
+
+// Middleware to Protect Routes
+const authenticateToken = (req, res, next) => {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return res.status(401).json({ message: 'Access denied' });
+
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) return res.status(403).json({ message: 'Invalid token' });
+        req.user = user;
+        next();
+    });
+};
+
+// Logout Route (Optional: Token Invalidation)
+router.post('/logout', (req, res) => {
+    // Typically, you'll handle this client-side by clearing the token.
+    res.json({ message: 'Logout successful' });
+});
+
+module.exports = router;
+
+app.get('/api/events', authenticateToken, async (req, res) => {
+    const [rows] = await db.promise().query('SELECT * FROM events');
+    res.json(rows);
 });
 
 

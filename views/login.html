@@ -3,38 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Event Management System</title>
-    <link rel="stylesheet" href="../public/css/style.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <main>
-            <h1 class="text-center">Sign in to your account</h1>
-            <form id="loginForm" class="card">
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-group">
-                    <input type="checkbox" id="remember-me" name="remember-me">
-                    <label for="remember-me">Remember me</label>
-                </div>
-                <button type="submit">Sign in</button>
-            </form>
-            <div class="text-center mb-4">
-                <p>Or continue with</p>
-                <button onclick="socialLogin('google')"><a href="https://google.com"><img src="icons/google.png" alt=""></a></button>
-                <button onclick="socialLogin('github')"><a href="https://github.com"><img src="icons/github.png" alt=""></a></button>
-                <button onclick="socialLogin('facebook')"><a href="https://facebook.com"><img src="icons/fb.png" alt=""></a></button>
+    <main class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
             </div>
-        </main>
-    </div>
-    <script src="../public/JS/login.js"></script>
-    <script src="../public/JS/settings.js"></script>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div id="errorMessage" class="error hidden"></div>
+    </main>
+    <script src="login.js"></script>
 </body>
 </html>
-

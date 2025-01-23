@@ -1,17 +1,32 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    console.log('Login attempt with:', { email, password });
-    // Here you would typically send a request to your server to authenticate the user
-    // For now, we'll just redirect to the dashboard
-    window.location.href = 'dashboard.html';
+
+    try {
+        const response = await fetch('http://localhost:5000/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert('Login successful!');
+            localStorage.setItem('token', data.token);
+            window.location.href = 'dashboard.html'; // Redirect to dashboard
+        } else {
+            alert(data.error || 'Login failed');
+        }
+    } catch (err) {
+        console.error('Error:', err);
+        alert('An error occurred during login');
+    }
 });
 
-function socialLogin(provider) {
-    console.log(`Attempting to login with ${provider}`);
-    // Here you would typically initiate the OAuth flow for the selected provider
-    // For now, we'll just log the attempt and redirect to the dashboard
-    window.location.href = 'dashboard.html';
-}
-
+document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('token');
+    alert('Logged out successfully!');
+    window.location.href = 'login.html'; // Redirect to login
+});
