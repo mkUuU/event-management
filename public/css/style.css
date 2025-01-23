@@ -76,8 +76,8 @@
   }
   
   button {
-    background-color: #3490dc;
-    color: #fff;
+    background-color: rgb(255, 255, 255),255,255;
+    color: #353232;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 4px;
@@ -85,7 +85,7 @@
   }
   
   button:hover {
-    background-color: #2779bd;
+    background-color: #c6cacc;
   }
   
   /* Table styles */
@@ -108,11 +108,17 @@
   
   /* Card styles */
   .card {
-    background-color: #fff;
+    background-color: #cfcece;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
     margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  .card:hover{
+    transform: scale(1.02);
+    
+    background-color: orangered;
   }
   
   /* Grid styles */
